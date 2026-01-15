@@ -18,6 +18,8 @@ class User(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name','last_name']
 
+    object = UserManager()
+
     def save(self,*args,**kwargs):
         if self.password and not self.password.startswitch('pbkdf2_sha256$'):
             self.password = make_password(self.password)
